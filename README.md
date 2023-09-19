@@ -26,7 +26,14 @@ To install dependencies, run the command bellow :
 ```bash
   pip install -r requirements.txt
 ```
+Add your MongoDB address to settings.py
 
+```bash
+  MONGODB_SERVER = "localhost"
+  MONGODB_PORT = 27017
+  MONGODB_DB = "YOUR_DB"
+  MONGODB_COLLECTION = "YOUR_COLLECTION"
+```
 
 
 ## Usage
@@ -35,7 +42,7 @@ To install dependencies, run the command bellow :
 To crawl over all ads, run the command bellow:
 
 ```bash
-  scrapy crawl hairsellon -o hair.json
+  scrapy crawl hairsellon 
 ```
 
 
