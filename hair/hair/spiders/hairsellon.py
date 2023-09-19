@@ -11,6 +11,12 @@ class HairsellonSpider(scrapy.Spider):
     allowed_domains = ["hairsellon.com"]
     start_urls = ["https://hairsellon.com/ads/"]
 
+    custom_settings = {
+        "AUTOTHROTTLE_ENABLED" : True,
+        "AUTOTHROTTLE_DEBUG" : True,
+        "HTTPCACHE_ENABLED" : True,
+        }
+
     def parse(self, response):
         for link in response.xpath("//article/@data-permalink"):
             yield scrapy.Request(url=link.get(), callback=self.parse_ad)
