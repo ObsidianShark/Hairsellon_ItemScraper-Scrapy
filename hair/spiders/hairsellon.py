@@ -2,9 +2,8 @@ from datetime import datetime
 
 import scrapy
 from hair.items import HairItem
-from hair.itemsloaders import HairLoader
-from scrapy.spiders import SitemapSpider
-
+from scrapy.loader import ItemLoader
+from itemloaders.processors import MapCompose, TakeFirst
 
 class HairsellonSpider(scrapy.Spider):
     name = "hairsellon"
@@ -25,8 +24,10 @@ class HairsellonSpider(scrapy.Spider):
             yield scrapy.Request(url=next_page, callback=self.parse)
 
     def parse_ad(self, response):
-        ad = HairLoader(item=HairItem(), selector=response)
-
+        ad = ItemLoader(item=HairItem(), selector=response)
+        ad.default_input_processor = MapCompose()
+        ad.default_output_processor = TakeFirst()
+        
         ad.add_xpath("ad_name", "//header/h1[@class='entry-title']/text()")
         ad.add_xpath("price", "//header/p[@class='entry-title cp_price']/text()")
         ad.add_xpath(
