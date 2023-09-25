@@ -17,8 +17,7 @@ Python 3.10+
 To clone the repository, type the code below in a shell :
 
 ```bash
-  git clone https://github.com/ObsidianShark/Hairsellon_ItemScraper-Scrapy.git
-  cd hair
+  git clone https://github.com/ObsidianShark/Hairsellon_ItemScraper-Scrapy.git  
 ```
 
 To install dependencies, run the command bellow :
