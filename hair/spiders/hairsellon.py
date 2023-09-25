@@ -13,8 +13,7 @@ class HairsellonSpider(scrapy.Spider):
 
     custom_settings = {
         "AUTOTHROTTLE_ENABLED" : True,
-        "AUTOTHROTTLE_DEBUG" : True,
-        "HTTPCACHE_ENABLED" : True,
+        "AUTOTHROTTLE_DEBUG" : True,        
         }
 
     def parse(self, response):
@@ -22,7 +21,7 @@ class HairsellonSpider(scrapy.Spider):
             yield scrapy.Request(url=link.get(), callback=self.parse_ad)
 
         next_page = response.xpath("//a[@class='next page-numbers']/@href").get()
-        if not next_page:
+        if next_page:
             yield scrapy.Request(url=next_page, callback=self.parse)
 
     def parse_ad(self, response):
